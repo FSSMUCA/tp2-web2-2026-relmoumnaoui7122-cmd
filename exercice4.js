@@ -25,4 +25,3 @@ pairs.forEach(([a, b]) => {
 
 console.log("---");
 console.log(`${count} paire(s) où == et === donnent des résultats différents`);
-
