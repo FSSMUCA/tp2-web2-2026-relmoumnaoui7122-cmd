@@ -1,32 +1,28 @@
-const paires = [
-    [0, ""],
-    [0, "0"],
-    [0, false],
-    ["", false],
-    [null, undefined],
-    [null, false],
-    [NaN, NaN],
-    [1, "1"],
-    [" \t\n ", 0]
+const pairs = [
+  [0, ""],
+  [0, "0"],
+  [0, false],
+  ["", false],
+  [null, undefined],
+  [null, false],
+  [NaN, NaN],
+  [1, "1"],
+  [" \t\n ", 0]
 ];
 
-let compteur = 0;
+let count = 0;
 
-for (let i = 0; i < paires.length; i++) {
-    const a = paires[i][0];
-    const b = paires[i][1];
+pairs.forEach(([a, b]) => {
+  const eq = (a == b);
+  const seq = (a === b);
 
-    const loose = a == b;
-    const strict = a === b;
+  if (eq === true && seq === false) {
+    count++;
+  }
 
-    if (loose !== strict) compteur++;
-
-    const labelA = String(a) === "" ? '""' : JSON.stringify(a);
-    const labelB = String(b) === "" ? '""' : JSON.stringify(b);
-
-    const ligne = `${labelA} == ${labelB}`;
-    console.log(`${ligne.padEnd(20)} -> ${String(loose).padEnd(6)} |   ${labelA} === ${labelB.padEnd(20)} -> ${strict}`);
-}
+  console.log(`${JSON.stringify(a)} == ${JSON.stringify(b)} -> ${eq} | ${JSON.stringify(a)} === ${JSON.stringify(b)} -> ${seq}`);
+});
 
 console.log("---");
-console.log(`${compteur} paire(s) où == et === donnent des résultats différents`);
+console.log(`${count} paire(s) où == et === donnent des résultats différents`);
+
